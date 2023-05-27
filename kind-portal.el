@@ -13,7 +13,6 @@
    nil))
 
 (defun kind-portal/send (code)
-  (clay/start)
   (kind-portal/cider-interactive-notify-and-eval
    (concat "
      (require '[scicloj.kind-portal.v1.api])
