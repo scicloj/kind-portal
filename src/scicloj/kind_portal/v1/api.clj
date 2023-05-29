@@ -7,10 +7,11 @@
 (defn open-if-needed []
   (session/open-if-needed))
 
-(defn kindly-submit-form [form]
+(defn kindly-submit-context [context]
   (open-if-needed)
-  (-> form
+  (-> context
       impl/prepare
       (->> (vector :portal.viewer/inspector))
       impl/as-portal-hiccup
-      portal/submit))
+      portal/submit)
+  :ok)

@@ -34,9 +34,10 @@
     (as-portal-hiccup v)
     v))
 
-(defn prepare [form]
+(defn prepare [{:keys [form value]
+                :or {value (eval form)}}]
   (let [{:keys [value kind]} (-> {:form form
-                                  :value (eval form)}
+                                  :value value}
                                  kindly/advice
                                  first)]
     (if kind
@@ -102,11 +103,13 @@
 (add-viewer!
  :kind/dataset
  (fn [v]
-   (-> v
-       println
-       with-out-str
-       vector
-       (kindly/consider :kind/table-md))))
+   (-> [:code (-> v
+                  println
+                  with-out-str
+                  vector
+                  (kindly/consider :kind/table-md)
+                  render-md)]
+       as-portal-hiccup)))
 
 (add-viewer!
  :kind/buffered-image

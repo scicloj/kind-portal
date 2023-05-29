@@ -5,18 +5,11 @@
     (scicloj.kind-portal.v1.api/open-if-needed)")
   t)
 
-(defun kind-portal/cider-interactive-notify-and-eval (code)
-  (cider-interactive-eval
-   code
-   (cider-interactive-eval-handler nil (point))
-   nil
-   nil))
-
 (defun kind-portal/send (code)
-  (kind-portal/cider-interactive-notify-and-eval
+  (cider-interactive-eval
    (concat "
      (require '[scicloj.kind-portal.v1.api])
-     (scicloj.kind-portal.v1.api/kindly-submit-form (quote " code "))")))
+     (scicloj.kind-portal.v1.api/kindly-submit-context {:form (quote " code ")})")))
 
 (defun kind-portal/send-last-sexp ()
   (interactive)

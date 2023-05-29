@@ -6,27 +6,25 @@
 
 (kindly-default/setup!)
 
+(kind-portal/kindly-submit-context
+ {:form '(kind/hiccup
+          [:h1 "a"])})
 
-(kind-portal/kindly-submit-form '(+ 1 2))
-
-(kind-portal/kindly-submit-form '(kind/hiccup
-                                  [:h1 "a"]))
-
-(kind-portal/kindly-submit-form '(kind/vega-lite
-                                  {:$schema "https://vega.github.io/schema/vega-lite/v5.json"
-                                   :data {:values [{:a "A" :b 28}
-                                                   {:a "B" :b 55}
-                                                   {:a "C" :b 43}
-                                                   {:a "D" :b 91}
-                                                   {:a "E" :b 81}
-                                                   {:a "F" :b 53}
-                                                   {:a "G" :b 19}
-                                                   {:a "H" :b 87}
-                                                   {:a "I" :b 52}]}
-                                   :description "A simple bar chart with embedded data."
-                                   :encoding {:x {:axis {:labelAngle 0} :field "a" :type "nominal"}
-                                              :y {:field "b" :type "quantitative"}}
-                                   :mark "bar"}))
+(kind/vega-lite
+ {:$schema "https://vega.github.io/schema/vega-lite/v5.json"
+  :data {:values [{:a "A" :b 28}
+                  {:a "B" :b 55}
+                  {:a "C" :b 43}
+                  {:a "D" :b 91}
+                  {:a "E" :b 81}
+                  {:a "F" :b 53}
+                  {:a "G" :b 19}
+                  {:a "H" :b 87}
+                  {:a "I" :b 52}]}
+  :description "A simple bar chart with embedded data."
+  :encoding {:x {:axis {:labelAngle 0} :field "a" :type "nominal"}
+             :y {:field "b" :type "quantitative"}}
+  :mark "bar"})
 
 
 (kind/hiccup [:h1 "a"])
@@ -41,28 +39,13 @@
 
 image
 
-(-> ["
-# abcd
+(kind/code
+ ["[{:a '(+ 2 1)}]"])
+
+(kind/md
+ ["# abcd
 efgh `ijkl`"
-     "#mnop"]
-    kind/md)
-
-(kind/hiccup
- [:div
-  [:portal.viewer/markdown "
-# abcd
-efgh `ijkl`"]
-  [:portal.viewer/markdown "
-# abcd
-efgh `ijkl`"]])
-
-(kind/hiccup
- [:portal.viewer/markdown "
-# abcd
-efgh `ijkl`"])
-
-
-(kind/code ["[{:a '(+ 2 1)}]"])
+  "# mnop"])
 
 (tc/dataset
  {:x [1 2 3]
