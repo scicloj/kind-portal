@@ -2,7 +2,8 @@
   (:require [portal.api :as portal]
             [scicloj.kindly.v3.api :as kindly]
             [scicloj.kind-portal.v1.walk :as careful-walk]
-            [scicloj.kind-portal.v1.util.image :as util.image]))
+            [scicloj.kind-portal.v1.util.image :as util.image]
+            [clojure.pprint :as pp]))
 
 (def *kind->viewer
   (atom {}))
@@ -12,10 +13,12 @@
   (kindly/add-kind! kind)
   (swap! *kind->viewer assoc kind viewer))
 
-(defn maybe-apply-viewer [value kind]
-  (if-let [viewer (@*kind->viewer kind)]
-    (viewer value)
-    value))
+(defn value->kind [v]
+  (-> {:value v}
+      kindly/advice
+      ;; TODO: handle multiple contexts more wisely
+      first
+      :kind))
 
 (defn as-portal [v portal-viewer-name]
   (-> v
@@ -30,30 +33,59 @@
 (defn as-portal-hiccup-if-relevant [v]
   (if (and (vector? v)
            (-> v first keyword)
-           (-> v first namespace (= "porta.viewer")))
+           (-> v first namespace (= "portal.viewer")))
     (as-portal-hiccup v)
     v))
 
-(defn prepare [{:keys [form value]
-                :or {value (eval form)}}]
-  (let [{:keys [value kind]} (-> {:form form
-                                  :value value}
-                                 kindly/advice
-                                 first)]
-    (if kind
-      (maybe-apply-viewer value kind)
-      (->> value
-           (careful-walk/postwalk
-            (fn [subvalue]
-              (let [{:keys [value kind]}
-                    (-> {:value subvalue}
-                        kindly/advice
-                        first)]
-                (if kind
-                  (-> subvalue
-                      (maybe-apply-viewer kind))
-                  subvalue))))))))
+(defn pprint-viewer
+  ([]
+   (pprint-viewer nil))
+  ([prefix]
+   (fn [v]
+     (let [printed-value [:portal.viewer/code
+                          (-> v
+                              pp/pprint
+                              with-out-str)]]
+       (as-portal-hiccup
+        (if prefix
+          [:div prefix printed-value]
+          printed-value))))))
 
+(defn fallback-viewer [kind]
+  (pprint-viewer [:p "unimplemented kind" [:code (pr-str kind)]]))
+
+(defn kind-viewer [kind]
+  (or (@*kind->viewer kind)
+      (fallback-viewer kind)))
+
+(defn prepare [context]
+  (let [{:keys [value kind]} (-> context
+                                 kindly/advice
+                                 ;; TODO: handle multiple inferred contexts more wisely
+                                 first)]
+    ((kind-viewer kind) value)))
+
+
+
+
+(defn complete-context [{:keys [form]
+                         :as context}]
+  (if (contains? context :value)
+    context
+    (assoc context :value (eval form))))
+
+(defn prepare-value [v]
+  (prepare {:value v}))
+
+(add-viewer!
+ :kind/pprint
+ pprint-viewer)
+
+(add-viewer!
+ :kind/void
+ (constantly
+  (as-portal-hiccup
+   [:p ""])))
 
 (add-viewer!
  :kind/vega-lite
@@ -61,11 +93,9 @@
    (as-portal-hiccup
     [:portal.viewer/vega-lite v])))
 
-
 (add-viewer!
  :kind/hiccup
  (fn [v] (as-portal-hiccup v)))
-
 
 (defn render-md [v]
   (->> v
@@ -77,6 +107,10 @@
        as-portal-hiccup))
 
 (add-viewer!
+ :kind/md
+ render-md)
+
+(add-viewer!
  :kind/code
  (fn [v]
    (->> v
@@ -86,31 +120,34 @@
         as-portal-hiccup)))
 
 (add-viewer!
- :kind/md
- (fn [v]
-   (->> v
-        (map (fn [md]
-               [:portal.viewer/markdown md]))
-        (into [:div])
-        as-portal-hiccup)))
-
-(add-viewer!
- :kind/table-md
- (fn [v]
-   (->> [:code (render-md v)]
-        as-portal-hiccup)))
-
-(add-viewer!
  :kind/dataset
  (fn [v]
    (-> [:code (-> v
                   println
                   with-out-str
-                  vector
-                  (kindly/consider :kind/table-md)
                   render-md)]
        as-portal-hiccup)))
 
 (add-viewer!
  :kind/buffered-image
  util.image/buffered-image->byte-array)
+
+(add-viewer!
+ :kind/vector
+ (partial mapv prepare-value))
+
+(add-viewer!
+ :kind/seq
+ (partial map prepare-value))
+
+(add-viewer!
+ :kind/set
+ (comp set
+       (partial map prepare-value)))
+
+(add-viewer!
+ :kind/map
+ (fn [m]
+   (-> m
+       (update-keys prepare-value)
+       (update-vals prepare-value))))

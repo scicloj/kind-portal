@@ -10,6 +10,11 @@
  {:form '(kind/hiccup
           [:h1 "a"])})
 
+
+(kind/pprint
+ {:x (range 99)})
+
+
 (kind/vega-lite
  {:$schema "https://vega.github.io/schema/vega-lite/v5.json"
   :data {:values [{:a "A" :b 28}
@@ -25,7 +30,6 @@
   :encoding {:x {:axis {:labelAngle 0} :field "a" :type "nominal"}
              :y {:field "b" :type "quantitative"}}
   :mark "bar"})
-
 
 (kind/hiccup [:h1 "a"])
 
@@ -45,10 +49,37 @@ image
 (kind/md
  ["# abcd
 efgh `ijkl`"
-  "# mnop"])
+  "
+* a
+* b
+* c"])
 
 (tc/dataset
  {:x [1 2 3]
   :y [4 5 6]})
 
 ,
+
+[(kind/hiccup [:h1 "a"])
+ (tc/dataset
+  {:x [1 2 3]
+   :y [4 5 6]})]
+
+(list
+ (kind/hiccup [:h1 "a"])
+ (tc/dataset
+  {:x [1 2 3]
+   :y [4 5 6]}))
+
+#{(kind/hiccup [:h1 "a"])
+  (tc/dataset
+   {:x [1 2 3]
+    :y [4 5 6]})}
+
+{:x (kind/hiccup [:h1 "y"])
+ (kind/hiccup [:h1 "y"]) :x}
+
+(kind/table
+ (tc/dataset
+  {:x [1 2 3]
+   :y [4 5 6]}))

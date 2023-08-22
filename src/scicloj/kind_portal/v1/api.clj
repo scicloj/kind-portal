@@ -10,6 +10,7 @@
 (defn kindly-submit-context [context]
   (open-if-needed)
   (-> context
+      impl/complete-context
       impl/prepare
       (->> (vector :portal.viewer/inspector))
       impl/as-portal-hiccup
