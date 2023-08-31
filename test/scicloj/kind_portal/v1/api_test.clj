@@ -1,10 +1,8 @@
 (ns scicloj.kind-portal.v1.api_test
   (:require  [scicloj.kind-portal.v1.api :as kind-portal]
-             [scicloj.kindly-default.v1.api :as kindly-default]
-             [scicloj.kindly.v3.kind :as kind]
+             [scicloj.kindly.v4.kind :as kind]
+             [scicloj.kindly-advice.v1.api :as kindly-advice]
              [tablecloth.api :as tc]))
-
-(kindly-default/setup!)
 
 (kind-portal/kindly-submit-context
  {:form '(kind/hiccup
@@ -57,8 +55,6 @@ efgh `ijkl`"
 (tc/dataset
  {:x [1 2 3]
   :y [4 5 6]})
-
-,
 
 [(kind/hiccup [:h1 "a"])
  (tc/dataset

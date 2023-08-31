@@ -1,7 +1,7 @@
 (ns scicloj.kind-portal.v1.impl
   (:require [portal.api :as portal]
-            [scicloj.kindly.v3.api :as kindly]
-            [scicloj.kind-portal.v1.walk :as careful-walk]
+            [scicloj.kindly.v4.api :as kindly]
+            [scicloj.kindly-advice.v1.api :as kindly-advice]
             [scicloj.kind-portal.v1.util.image :as util.image]
             [clojure.pprint :as pp]))
 
@@ -10,14 +10,11 @@
 
 (defn add-viewer!
   [kind viewer]
-  (kindly/add-kind! kind)
   (swap! *kind->viewer assoc kind viewer))
 
 (defn value->kind [v]
   (-> {:value v}
-      kindly/advice
-      ;; TODO: handle multiple contexts more wisely
-      first
+      kindly-advice/advise
       :kind))
 
 (defn as-portal [v portal-viewer-name]
@@ -52,21 +49,21 @@
           printed-value))))))
 
 (defn fallback-viewer [kind]
-  (pprint-viewer [:p "unimplemented kind" [:code (pr-str kind)]]))
+  (if kind
+    (pprint-viewer [:p "unimplemented kind" [:code (pr-str kind)]])
+    (pprint-viewer)))
 
 (defn kind-viewer [kind]
   (or (@*kind->viewer kind)
       (fallback-viewer kind)))
 
-(defn prepare [context]
-  (let [{:keys [value kind]} (-> context
-                                 kindly/advice
-                                 ;; TODO: handle multiple inferred contexts more wisely
-                                 first)]
-    ((kind-viewer kind) value)))
-
-
-
+(defn prepare [{:as context
+                :keys [value]}]
+  ((-> context
+       kindly-advice/advise
+       :kind
+       kind-viewer)
+   value))
 
 (defn complete-context [{:keys [form]
                          :as context}]
@@ -79,7 +76,7 @@
 
 (add-viewer!
  :kind/pprint
- pprint-viewer)
+ (pprint-viewer))
 
 (add-viewer!
  :kind/void

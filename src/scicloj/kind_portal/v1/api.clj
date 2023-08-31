@@ -1,6 +1,5 @@
 (ns scicloj.kind-portal.v1.api
   (:require [portal.api :as portal]
-            [scicloj.kindly.v3.api :as kindly]
             [scicloj.kind-portal.v1.impl :as impl]
             [scicloj.kind-portal.v1.session :as session]))
 
