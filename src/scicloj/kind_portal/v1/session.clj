@@ -17,14 +17,9 @@
            {:launcher :intellij})
       {}))
 
-(defn open
+(defn open-if-needed
   "Like portal/open, but stores the result in *portal-session.
   If there is already a session, it makes sure that it is open,
   Otherwise opens a new inspector window."
-  [config]
-  (swap! *portal-session portal/open config))
-
-(defn open-if-needed
-  "Ensures we have an open session"
-  []
-  (open (detect-editor)))
+  ([] (open-if-needed (detect-editor)))
+  ([config] (swap! *portal-session portal/open config)))
