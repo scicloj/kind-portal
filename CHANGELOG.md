@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [1-alpha5-SNAPSHOT]
+## [1-alpha5]
 - adapting to kindly v4
 - bugfix in some kind implementation (wrong use of the internally defined pprint-viewer)
 - removing obsolete unnecessary code
