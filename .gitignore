@@ -2,3 +2,5 @@
 .nrepl-port
 target
 .portal
+.calva
+*.pom
