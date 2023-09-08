@@ -126,7 +126,7 @@
        as-portal-hiccup)))
 
 (add-preparer!
- :kind/buffered-image
+ :kind/image
  util.image/buffered-image->byte-array)
 
 (add-preparer!
