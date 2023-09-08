@@ -5,12 +5,12 @@
             [scicloj.kind-portal.v1.util.image :as util.image]
             [clojure.pprint :as pp]))
 
-(def *kind->viewer
+(def *kind->preparer
   (atom {}))
 
-(defn add-viewer!
-  [kind viewer]
-  (swap! *kind->viewer assoc kind viewer))
+(defn add-preparer!
+  [kind preparer]
+  (swap! *kind->preparer assoc kind preparer))
 
 (defn value->kind [v]
   (-> {:value v}
@@ -34,9 +34,9 @@
     (as-portal-hiccup v)
     v))
 
-(defn pprint-viewer
+(defn pprint-preparer
   ([]
-   (pprint-viewer nil))
+   (pprint-preparer nil))
   ([prefix]
    (fn [v]
      (let [printed-value [:portal.viewer/code
@@ -48,21 +48,21 @@
           [:div prefix printed-value]
           printed-value))))))
 
-(defn fallback-viewer [kind]
+(defn fallback-preparer [kind]
   (if kind
-    (pprint-viewer [:p "unimplemented kind" [:code (pr-str kind)]])
-    (pprint-viewer)))
+    (pprint-preparer [:p "unimplemented kind" [:code (pr-str kind)]])
+    (pprint-preparer)))
 
-(defn kind-viewer [kind]
-  (or (@*kind->viewer kind)
-      (fallback-viewer kind)))
+(defn kind-preparer [kind]
+  (or (@*kind->preparer kind)
+      (fallback-preparer kind)))
 
 (defn prepare [{:as context
                 :keys [value]}]
   ((-> context
        kindly-advice/advise
        :kind
-       kind-viewer)
+       kind-preparer)
    value))
 
 (defn complete-context [{:keys [form]
@@ -74,23 +74,23 @@
 (defn prepare-value [v]
   (prepare {:value v}))
 
-(add-viewer!
+(add-preparer!
  :kind/pprint
- (pprint-viewer))
+ (pprint-preparer))
 
-(add-viewer!
+(add-preparer!
  :kind/void
  (constantly
   (as-portal-hiccup
    [:p ""])))
 
-(add-viewer!
+(add-preparer!
  :kind/vega-lite
  (fn [v]
    (as-portal-hiccup
     [:portal.viewer/vega-lite v])))
 
-(add-viewer!
+(add-preparer!
  :kind/hiccup
  (fn [v] (as-portal-hiccup v)))
 
@@ -103,11 +103,11 @@
        (into [:div])
        as-portal-hiccup))
 
-(add-viewer!
+(add-preparer!
  :kind/md
  render-md)
 
-(add-viewer!
+(add-preparer!
  :kind/code
  (fn [v]
    (->> v
@@ -116,7 +116,7 @@
         (into [:div])
         as-portal-hiccup)))
 
-(add-viewer!
+(add-preparer!
  :kind/dataset
  (fn [v]
    (-> [:code (-> v
@@ -125,24 +125,24 @@
                   render-md)]
        as-portal-hiccup)))
 
-(add-viewer!
+(add-preparer!
  :kind/buffered-image
  util.image/buffered-image->byte-array)
 
-(add-viewer!
+(add-preparer!
  :kind/vector
  (partial mapv prepare-value))
 
-(add-viewer!
+(add-preparer!
  :kind/seq
  (partial map prepare-value))
 
-(add-viewer!
+(add-preparer!
  :kind/set
  (comp set
        (partial map prepare-value)))
 
-(add-viewer!
+(add-preparer!
  :kind/map
  (fn [m]
    (-> m
