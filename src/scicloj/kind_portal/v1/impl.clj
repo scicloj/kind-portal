@@ -34,24 +34,14 @@
     (as-portal-hiccup v)
     v))
 
-(defn pprint-preparer
-  ([]
-   (pprint-preparer nil))
-  ([prefix]
-   (fn [v]
-     (let [printed-value [:portal.viewer/code
-                          (-> v
-                              pp/pprint
-                              with-out-str)]]
-       (as-portal-hiccup
-        (if prefix
-          [:div prefix printed-value]
-          printed-value))))))
 
 (defn fallback-preparer [kind]
-  (if kind
-    (pprint-preparer [:p "unimplemented kind" [:code (pr-str kind)]])
-    (pprint-preparer)))
+  (fn [v]
+    (as-portal-hiccup
+     [:div
+      (when kind
+        [:p "unimplemented kind" [:code (pr-str kind)]])
+      [:portal.viewer/inspector v]])))
 
 (defn kind-preparer [kind]
   (or (@*kind->preparer kind)
@@ -73,6 +63,20 @@
 
 (defn prepare-value [v]
   (prepare {:value v}))
+
+(defn pprint-preparer
+  ([]
+   (pprint-preparer nil))
+  ([prefix]
+   (fn [v]
+     (let [printed-value [:portal.viewer/code
+                          (-> v
+                              pp/pprint
+                              with-out-str)]]
+       (as-portal-hiccup
+        (if prefix
+          [:div prefix printed-value]
+          printed-value))))))
 
 (add-preparer!
  :kind/pprint

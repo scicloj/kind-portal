@@ -1,6 +1,13 @@
 (ns examples
   (:require [scicloj.kindly.v4.kind :as kind]
-            [tablecloth.api :as tc]))
+            [tablecloth.api :as tc]
+            [scicloj.kind-portal.v1.api :as kind-portal]))
+
+#_(kind-portal/open-if-needed)
+
+4
+
+{:x (range 4)}
 
 (kind/pprint
  {:x (range 99)})
@@ -67,6 +74,6 @@ efgh `ijkl`"
  (kind/hiccup [:h1 "y"]) :x}
 
 (kind/table
- (tc/dataset
-  {:x [1 2 3]
-   :y [4 5 6]}))
+ (tc/dataset {:x [1 2 3]
+              :y [4 5 6]}
+             {:dataset-name "my-dataset"}))
