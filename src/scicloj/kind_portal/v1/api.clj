@@ -6,11 +6,14 @@
 (defn open-if-needed []
   (session/open-if-needed))
 
+(defn prepare [context]
+  (impl/prepare context))
+
 (defn kindly-submit-context [context]
   (open-if-needed)
   (-> context
       impl/complete-context
-      impl/prepare
+      prepare
       (->> (vector :portal.viewer/inspector))
       impl/as-portal-hiccup
       portal/submit)

@@ -34,7 +34,6 @@
     (as-portal-hiccup v)
     v))
 
-
 (defn fallback-preparer [kind]
   (fn [v]
     (as-portal-hiccup

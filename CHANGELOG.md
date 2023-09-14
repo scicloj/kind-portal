@@ -1,10 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [1-alpha6]
+## [1-alpha7] - 2023-09-14
+- exposing `prepare` in the API
+
+## [1-alpha6] - 2023-09-11
 - falling back to Portal default rather than to pprint
 
-## [1-alpha5]
+## [1-alpha5] - 2023-09-08
 - adapting to kindly v4
 - bugfix in some kind implementation (wrong use of the internally defined pprint-viewer)
 - removing obsolete unnecessary code
