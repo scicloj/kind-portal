@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [1-alpha8-SNAPSHOT]
+- updated deps
+
 ## [1-alpha7] - 2023-09-14
 - exposing `prepare` in the API
 
