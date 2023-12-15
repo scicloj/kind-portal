@@ -8,7 +8,9 @@
 (defun kind-portal/send (code)
   (cider-interactive-eval
    (concat "
-     (require '[scicloj.kind-portal.v1.api])
+     (require '[portal.api]
+              '[scicloj.kind-portal.v1.api])
+     (portal.api/clear)
      (scicloj.kind-portal.v1.api/kindly-submit-context {:form (quote " code ")})")))
 
 (defun kind-portal/send-last-sexp ()
