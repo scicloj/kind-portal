@@ -148,6 +148,6 @@
 (add-preparer!
  :kind/map
  (fn [m]
-   (-> m
-       (update-keys prepare-value)
-       (update-vals prepare-value))))
+   (into (empty m)
+         (for [[k v] m]
+           [(prepare-value k) (prepare-value v)]))))

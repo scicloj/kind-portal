@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [1-alpha8-SNAPSHOT]
 - updated deps
+- avoid using new update-vals core fn #3
 
 ## [1-alpha7] - 2023-09-14
 - exposing `prepare` in the API
