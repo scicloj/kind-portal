@@ -42,8 +42,6 @@ to your elisp configuration to get a kind-portal `send` command.
 Then you can visualize parts of your notebook by putting the cursor at the end of the code,
 and pressing your keybinding.
 
-More information about how to set up REPL commands with keybindings for major IDEs can be found in the [Clay setup documentation](https://scicloj.github.io/clay/#setup).
-
 See the [example notebook](./notebooks/examples.clj) to try it out.
 
 Portal looks like this:
