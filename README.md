@@ -20,6 +20,8 @@ If you prefer, you can add them as a user dev dependencies instead,
 so that they are available in all projects.
 See `$HOME/.clojure/deps.edn` as described in [deps_sources](https://clojure.org/reference/deps_and_cli#deps_sources).
 
+### Interaction
+
 From the REPL you can require kind-portal, and then send forms to be visualized:
 
 ```clojure
@@ -37,7 +39,30 @@ It is recommended to create a REPL command to invoke `kindly-submit-context`:
 
 Emacs users can make use of the [kind-portal.el](https://github.com/scicloj/kind-portal.el) package.
 
-## Example
+### Preparing values
+
+Another use of Portal is functional, through the `prepare` function, which prepares a Kindly context as a Portal-ready values. 
+
+This may be used by other tools (e.g., Clay) that may wish to display Portal viewers.
+
+For example:
+```clojure
+(require '[scicloj.kind-portal.v1.api :as kind-portal]
+         '[scicloj.kindly.v4.kind :as kind])
+
+(def portal-ready-value
+  (kind-portal/prepare
+   {:value (kind/hiccup [:div [:p "hello"]])}))
+
+portal-ready-value
+#_=> [:div [:p "hello"]]
+
+(meta portal-ready-value)
+#_=> {:kindly/kind :kind/hiccup,
+      :portal.viewer/default :portal.viewer/hiccup}
+```
+
+## Examples
 
 See the [example notebook](./notebooks/examples.clj) to try it out.
 
