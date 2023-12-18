@@ -37,6 +37,8 @@ It is recommended to create a REPL command to invoke `kindly-submit-context`:
     (kp/kindly-submit-context {:form (quote ~form-before-caret)}))
 ```
 
+#### Emacs CIDER
+
 Emacs users can make use of the [kind-portal.el](https://github.com/scicloj/kind-portal.el) package.
 
 ### Preparing values
