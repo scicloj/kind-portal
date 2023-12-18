@@ -1,6 +1,6 @@
 # kind-portal
 
-<img src="https://raw.githubusercontent.com/scicloj/graphic-design/live/icons/Kindly.svg" alt="Clay" align="right" width="128"/>
+<img src="https://raw.githubusercontent.com/scicloj/graphic-design/live/icons/Kindly.svg" alt="Kindly" align="right" width="128"/>
 <img src="https://raw.githubusercontent.com/djblue/portal/master/resources/splash.svg" alt="Portal" align="right" width="128"/>
 
 This library adapts the [Portal](https://github.com/djblue/portal/) visualization tool to support the [Kindly](https://scicloj.github.io/kindly/) convention for Clojure literate programming.
