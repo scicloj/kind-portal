@@ -35,12 +35,9 @@ It is recommended to create a REPL command to invoke `kindly-submit-context`:
     (kp/kindly-submit-context {:form (quote ~form-before-caret)}))
 ```
 
-Emacs users can make use of [kind-portal.el](./kind-portal.el),
-for example you can add `https://raw.githubusercontent.com/scicloj/kind-portal/main/kind-portal.el`
-to your elisp configuration to get a kind-portal `send` command.
+Emacs users can make use of the [kind-portal.el](https://github.com/scicloj/kind-portal.el) package.
 
-Then you can visualize parts of your notebook by putting the cursor at the end of the code,
-and pressing your keybinding.
+## Example
 
 See the [example notebook](./notebooks/examples.clj) to try it out.
 
