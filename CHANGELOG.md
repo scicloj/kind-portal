@@ -1,10 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
+## [1-alpha10] - 2023-12-22
+- removed the unncessary kindly dependency
+
 ## [1-alpha9] - 2023-12-15
 - updated deps
 - avoid using new update-vals core fn #3
-- removed the unncessary kindly dependency
 
 ## [1-alpha7] - 2023-09-14
 - exposing `prepare` in the API
