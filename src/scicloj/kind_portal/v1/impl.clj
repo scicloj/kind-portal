@@ -1,7 +1,5 @@
 (ns scicloj.kind-portal.v1.impl
-  (:require [portal.api :as portal]
-            [scicloj.kindly.v4.api :as kindly]
-            [scicloj.kindly-advice.v1.api :as kindly-advice]
+  (:require [scicloj.kindly-advice.v1.api :as kindly-advice]
             [scicloj.kind-portal.v1.util.image :as util.image]
             [clojure.pprint :as pp]))
 
