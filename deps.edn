@@ -1,7 +1,8 @@
 {:deps {org.clojure/clojure         {:mvn/version "1.11.1"}
         org.scicloj/kindly-advice {:mvn/version "1-alpha5"}
         djblue/portal {:mvn/version "0.49.1"}}
- :aliases {:dev {:extra-deps {scicloj/tablecloth {:mvn/version "7.021"}}}
+ :aliases {:dev {:extra-deps {scicloj/tablecloth {:mvn/version "7.021"}
+                              org.scicloj/kindly {:mvn/version "4-alpha9"}}}
            :build {:deps {io.github.seancorfield/build-clj
                           {:git/tag "v0.6.4" :git/sha "c21cfde"}}
                    :ns-default build}
