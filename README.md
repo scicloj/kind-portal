@@ -66,7 +66,7 @@ portal-ready-value
 
 ## Examples
 
-See the [example notebook](./notebooks/examples.clj) to try it out.
+See the [examples namespace](./examples/examples.clj) to try it out.
 
 Portal looks like this:
 ![Portal example](https://user-images.githubusercontent.com/1986211/196015567-74ba9153-341a-4fd7-be47-2c26f0c88c2e.png)
