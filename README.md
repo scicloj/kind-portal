@@ -66,7 +66,13 @@ portal-ready-value
 
 ## Examples
 
+### Various kinds
+
 See the [examples namespace](./examples/examples.clj) to try it out.
 
 Portal looks like this:
 ![Portal example](https://user-images.githubusercontent.com/1986211/196015567-74ba9153-341a-4fd7-be47-2c26f0c88c2e.png)
+
+### Standalone HTML
+
+The [standalone-html namespace](./examples/standalone_html.clj) demonstrates how one may generate a standalone HTML file containing Portal views annotated by Kindly and prepared using kind-portal. This is a self-contained demonstration of the method internally used by [Clay](https://scicloj.github.io/clay/) to [embed Portal views](https://scicloj.github.io/clay/#embedded-portal) in notebooks.
