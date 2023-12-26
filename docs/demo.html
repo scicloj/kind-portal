@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta content="width=device-width, initial-scale=1" name="viewport"><link href="data:," rel="icon"><title>Kind-portal standalone HTML demo</title></head><body><script src="demo_files/portal.js" type="text/javascript"></script><div><div><script>portal_api.embed().renderOutputItem(
+                {'mime': 'x-application/edn',
+                 'text': (() => "^{:kindly/kind :kind/hiccup, :portal.viewer/default :portal.viewer/hiccup} [:div [:h1 \"Kind-portal standalone HTML demo\"]]")}
+                , document.currentScript.parentElement);</script></div><div><script>portal_api.embed().renderOutputItem(
+                {'mime': 'x-application/edn',
+                 'text': (() => "^#:portal.viewer{:default :portal.viewer/hiccup} [:div [:portal.viewer/markdown \"This is a static html page with [Portal](https://github.com/djblue/portal) views of values annotated by [Kindly](https://scicloj.github.io/kindly/) and prepared using the [kind-portal](https://github.com/scicloj/kind-portal) adapter.\"]]")}
+                , document.currentScript.parentElement);</script></div><div><script>portal_api.embed().renderOutputItem(
+                {'mime': 'x-application/edn',
+                 'text': (() => "^{:kindly/kind :kind/hiccup, :portal.viewer/default :portal.viewer/hiccup} [:a {:href \"https://github.com/scicloj/kind-portal/blob/main/examples/standalone_html.clj\"} \"(source script)\"]")}
+                , document.currentScript.parentElement);</script></div><div><script>portal_api.embed().renderOutputItem(
+                {'mime': 'x-application/edn',
+                 'text': (() => "^#:portal.viewer{:default :portal.viewer/hiccup} [:portal.viewer/vega-lite ^#:kindly{:kind :kind/vega-lite} {:$schema \"https://vega.github.io/schema/vega-lite/v5.json\", :data {:values [{:a \"A\", :b 28} {:a \"B\", :b 55} {:a \"C\", :b 43} {:a \"D\", :b 91} {:a \"E\", :b 81} {:a \"F\", :b 53} {:a \"G\", :b 19} {:a \"H\", :b 87} {:a \"I\", :b 52}]}, :description \"A simple bar chart with embedded data.\", :encoding {:x {:axis {:labelAngle 0}, :field \"a\", :type \"nominal\"}, :y {:field \"b\", :type \"quantitative\"}}, :mark \"bar\"}]")}
+                , document.currentScript.parentElement);</script></div></div></body></html>
