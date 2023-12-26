@@ -4,7 +4,8 @@
 <img src="https://raw.githubusercontent.com/djblue/portal/master/resources/splash.svg" alt="Portal" align="right" width="128"/>
 
 This library adapts the [Portal](https://github.com/djblue/portal/) visualization tool to support the [Kindly](https://scicloj.github.io/kindly/) convention for Clojure literate programming.
-For example this adapter allows people to view a single visualization created inside a notebook that would otherwise be rendered with [Clay](https://github.com/scicloj/clay).
+
+For example, this adapter allows people to view a single visualization created inside a notebook that would otherwise be rendered with [Clay](https://github.com/scicloj/clay).
 Kindly establishes a common ground for Clojure learning resources that would work across different tools.
 Portal provides an interactive way to view data inside your IDE or in a separate window.
 
@@ -43,7 +44,7 @@ Emacs users can make use of the [kind-portal.el](https://github.com/scicloj/kind
 
 ### Preparing values
 
-Another use of Portal is functional, through the `prepare` function, which prepares a Kindly context as a Portal-ready values. 
+Another use of kind-portal is functional, through the `prepare` function, which prepares a Kindly context as a Portal-ready values. 
 
 This may be used by other tools (e.g., Clay) that may wish to display Portal viewers.
 
