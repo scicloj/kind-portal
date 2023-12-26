@@ -1,3 +1,5 @@
+;; This namespace demonstrates how one may generate a standalone HTML file containing Portal views annotated by Kindly and prepared using kind-portal. This is a self-contained demonstration of the method internally used by [Clay](https://scicloj.github.io/clay/) to [embed Portal views](https://scicloj.github.io/clay/#embedded-portal) in notebooks.
+
 (ns standalone-html
   (:require [scicloj.kindly.v4.kind :as kind]
             [scicloj.kind-portal.v1.api :as kind-portal]
