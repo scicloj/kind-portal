@@ -76,3 +76,5 @@ Portal looks like this:
 ### Standalone HTML
 
 The [standalone-html namespace](./examples/standalone_html.clj) demonstrates how one may generate a standalone HTML file containing Portal views annotated by Kindly and prepared using kind-portal. This is a self-contained demonstration of the method internally used by [Clay](https://scicloj.github.io/clay/) to [embed Portal views](https://scicloj.github.io/clay/#embedded-portal) in notebooks.
+
+To generate the page, call the `generate!` function.
