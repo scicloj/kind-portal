@@ -69,6 +69,7 @@
                    (kind/md "This is a static html page with [Portal](https://github.com/djblue/portal) views of values annotated by [Kindly](https://scicloj.github.io/kindly/) and prepared using the [kind-portal](https://github.com/scicloj/kind-portal) adapter.")
                    (kind/hiccup [:a {:href "https://github.com/scicloj/kind-portal/blob/main/examples/standalone_html.clj"}
                                  "(source script)"])
+                   (kind/md "A plot:")
                    (kind/vega-lite {:$schema "https://vega.github.io/schema/vega-lite/v5.json"
                                     :data {:values [{:a "A" :b 28}
                                                     {:a "B" :b 55}
@@ -82,7 +83,11 @@
                                     :description "A simple bar chart with embedded data."
                                     :encoding {:x {:axis {:labelAngle 0} :field "a" :type "nominal"}
                                                :y {:field "b" :type "quantitative"}}
-                                    :mark "bar"})]}
+                                    :mark "bar"})
+                   (kind/md "A vector with a few nested Hiccup values:")
+                   [(kind/hiccup [:p "text"])
+                    (kind/hiccup [:big "big text"])
+                    (kind/hiccup [:big [:big "big big text"]])]]}
          page
          (spit "docs/demo.html"))))
 

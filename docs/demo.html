@@ -10,5 +10,14 @@
                  'text': (() => "^{:kindly/kind :kind/hiccup, :portal.viewer/default :portal.viewer/hiccup} [:a {:href \"https://github.com/scicloj/kind-portal/blob/main/examples/standalone_html.clj\"} \"(source script)\"]")}
                 , document.currentScript.parentElement);</script></div><div><script>portal_api.embed().renderOutputItem(
                 {'mime': 'x-application/edn',
+                 'text': (() => "^#:portal.viewer{:default :portal.viewer/hiccup} [:div [:portal.viewer/markdown \"A plot:\"]]")}
+                , document.currentScript.parentElement);</script></div><div><script>portal_api.embed().renderOutputItem(
+                {'mime': 'x-application/edn',
                  'text': (() => "^#:portal.viewer{:default :portal.viewer/hiccup} [:portal.viewer/vega-lite ^#:kindly{:kind :kind/vega-lite} {:$schema \"https://vega.github.io/schema/vega-lite/v5.json\", :data {:values [{:a \"A\", :b 28} {:a \"B\", :b 55} {:a \"C\", :b 43} {:a \"D\", :b 91} {:a \"E\", :b 81} {:a \"F\", :b 53} {:a \"G\", :b 19} {:a \"H\", :b 87} {:a \"I\", :b 52}]}, :description \"A simple bar chart with embedded data.\", :encoding {:x {:axis {:labelAngle 0}, :field \"a\", :type \"nominal\"}, :y {:field \"b\", :type \"quantitative\"}}, :mark \"bar\"}]")}
+                , document.currentScript.parentElement);</script></div><div><script>portal_api.embed().renderOutputItem(
+                {'mime': 'x-application/edn',
+                 'text': (() => "^#:portal.viewer{:default :portal.viewer/hiccup} [:div [:portal.viewer/markdown \"A vector with a few nested Hiccup values:\"]]")}
+                , document.currentScript.parentElement);</script></div><div><script>portal_api.embed().renderOutputItem(
+                {'mime': 'x-application/edn',
+                 'text': (() => "[^{:kindly/kind :kind/hiccup, :portal.viewer/default :portal.viewer/hiccup} [:p \"text\"] ^{:kindly/kind :kind/hiccup, :portal.viewer/default :portal.viewer/hiccup} [:big \"big text\"] ^{:kindly/kind :kind/hiccup, :portal.viewer/default :portal.viewer/hiccup} [:big [:big \"big big text\"]]]")}
                 , document.currentScript.parentElement);</script></div></div></body></html>
