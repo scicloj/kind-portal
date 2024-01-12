@@ -1,20 +1,20 @@
 (ns scicloj.kind-portal.v1.api
   (:require [portal.api :as portal]
-            [scicloj.kind-portal.v1.impl :as impl]
+            [scicloj.kind-portal.v1.prepare :as prepare]
             [scicloj.kind-portal.v1.session :as session]))
 
 (defn open-if-needed []
   (session/open-if-needed))
 
 (defn prepare [context]
-  (impl/prepare context))
+  (prepare/prepare context))
 
 (defn kindly-submit-context [context]
   (open-if-needed)
   (-> context
-      impl/complete-context
+      prepare/complete-context
       prepare
       (->> (vector :portal.viewer/inspector))
-      impl/as-portal-hiccup
+      prepare/as-portal-hiccup
       portal/submit)
   :ok)
