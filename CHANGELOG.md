@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [1-alpha11] - 2024-01-12
 - updated deps
+- `kind/table` support - WIP (only the dataset type is supported)
 
 ## [1-alpha10] - 2023-12-22
 - removed the unncessary kindly dependency

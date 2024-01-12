@@ -1,7 +1,8 @@
 (ns scicloj.kind-portal.v1.impl
   (:require [scicloj.kindly-advice.v1.api :as kindly-advice]
             [scicloj.kind-portal.v1.util.image :as util.image]
-            [clojure.pprint :as pp]))
+            [clojure.pprint :as pp]
+            [portal.viewer]))
 
 (def *kind->preparer
   (atom {}))
@@ -149,3 +150,19 @@
    (into (empty m)
          (for [[k v] m]
            [(prepare-value k) (prepare-value v)]))))
+
+(add-preparer!
+ :kind/table
+ (fn [v]
+   ;; We assume v is a dataset, for now.
+   ;; More table formats should be supported.
+   (let [ks (keys v)]
+     (-> v
+         vals
+         (->> (apply map
+                     (fn [& row-as-list]
+                       (->> row-as-list
+                            (interleave ks)
+                            (apply hash-map)))))
+         (portal.viewer/table
+          {:columns ks})))))
