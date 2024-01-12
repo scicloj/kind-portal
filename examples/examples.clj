@@ -75,5 +75,5 @@ efgh `ijkl`"
 
 (kind/table
  (tc/dataset {:x [1 2 3]
-              :y [4 5 6]}
+              :y ["A" "B" "C"]}
              {:dataset-name "my-dataset"}))
