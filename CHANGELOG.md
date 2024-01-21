@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This change
 
 ## [1-alpha12-SNAPSHOT]
 - internal refactoring
+- deps update
 
 ## [1-alpha11] - 2024-01-12
 - updated deps

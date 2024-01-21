@@ -1,5 +1,5 @@
 {:deps {org.clojure/clojure         {:mvn/version "1.11.1"}
-        org.scicloj/kindly-advice {:mvn/version "1-alpha6"}
+        org.scicloj/kindly-advice {:mvn/version "1-alpha7"}
         djblue/portal {:mvn/version "0.51.1"}}
  :aliases {:dev {:extra-deps {scicloj/tablecloth {:mvn/version "7.021"}
                               org.scicloj/kindly {:mvn/version "4-alpha12"}
