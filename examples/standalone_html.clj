@@ -3,6 +3,7 @@
 ;; This is a self-contained demonstration of the method internally used by
 ;; [Clay](https://scicloj.github.io/clay/)
 ;; to [embed Portal views](https://scicloj.github.io/clay/#embedded-portal) in notebooks.
+;; See the resulting HTML page [here](https://scicloj.github.io/kind-portal/demo).
 ;;
 ;; To generate the page, call the `generate!` function.
 
