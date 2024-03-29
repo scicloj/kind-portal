@@ -15,7 +15,7 @@
             [deps-deploy.deps-deploy :as dd]))
 
 (def lib 'org.scicloj/kind-portal)
-(def version "1-alpha11")
+(def version "1-beta1")
 (def snapshot (str version "-SNAPSHOT"))
 (def class-dir "target/classes")
 
