@@ -15,7 +15,7 @@ Add `org.scicloj/kind-portal` and `djblue/portal` as dev dependencies.
 
 [![Clojars Project](https://img.shields.io/clojars/v/org.scicloj/kind-portal.svg)](https://clojars.org/org.scicloj/kind-portal)
 
-[![Clojars Project](https://img.shields.io/clojars/v/djblue/portal.svg)](https://clojars.org/org.djblue/portal)
+[![Clojars Project](https://img.shields.io/clojars/v/djblue/portal.svg)](https://clojars.org/djblue/portal)
 
 If you prefer, you can add them as a user dev dependencies instead,
 so that they are available in all projects.
@@ -26,7 +26,7 @@ See `$HOME/.clojure/deps.edn` as described in [deps_sources](https://clojure.org
 From the REPL you can require kind-portal, and then send forms to be visualized:
 
 ```clojure
-(scicloj.kind-portal.vi.api/kindly-submit-context {:form '(+ 1 2)})
+(scicloj.kind-portal.v1.api/kindly-submit-context {:form '(+ 1 2)})
 ```
 
 However, visualizations are most useful when you can invoke them with a key-binding.
@@ -44,7 +44,7 @@ Emacs users can make use of the [kind-portal.el](https://github.com/scicloj/kind
 
 ### Preparing values
 
-Another use of kind-portal is functional, through the `prepare` function, which prepares a Kindly context as a Portal-ready values. 
+Another use of kind-portal is functional, through the `prepare` function, which prepares a Kindly context as a Portal-ready values.
 
 This may be used by other tools (e.g., Clay) that may wish to display Portal viewers.
 
