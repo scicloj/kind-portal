@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [1-beta2] - unreleased
+## [1-beta2] - 2024-11-18 
 - updated deps
 - redeployed after a local code mistake that entered the previous version
 
