@@ -1,13 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file. This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
-## [1-beta2]
+## [1-beta2] - unreleased
 - updated deps
 
-## [1-beta1]
+## [1-beta1] - 2024-03-29
 - updated Portal version
 
-## [1-alpha12-SNAPSHOT]
+## [1-alpha12-SNAPSHOT] - 2024-01-21
 - internal refactoring
 - deps update
 
